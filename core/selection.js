@@ -2237,7 +2237,8 @@
 						// There is a bug in Firefox implementation (it would be too easy
 						// otherwise). The new start can't be after the end (W3C says it can).
 						// So, let's create a new range and collapse it to the desired point.
-						if ( e.toString().indexOf( 'NS_ERROR_ILLEGAL_VALUE' ) >= 0 ) {
+						if ( e.toString().indexOf( 'NS_ERROR_ILLEGAL_VALUE' ) >= 0 ||
+							( e.message && e.message.indexOf( 'Index or size is negative or greater than the allowed amount' ) >= 0 ) ) {
 							range.collapse( 1 );
 							nativeRange.setEnd( range.endContainer.$, range.endOffset );
 						} else {
